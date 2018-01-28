@@ -2,7 +2,7 @@
 
 namespace KeithMifsud\Demo\Application\Http\Controllers\Auth;
 
-use KeithMifsud\Demo\Application\User;
+use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User\User;
 use KeithMifsud\Demo\Application\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -58,7 +58,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \KeithMifsud\Demo\Application\User
+     * @return \KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User\User
      */
     protected function create(array $data)
     {

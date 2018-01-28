@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(KeithMifsud\Demo\Application\User::class, function (Faker $faker) {
+$factory->define(\KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
