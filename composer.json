@@ -23,7 +23,9 @@
             "database/factories"
         ],
         "psr-4": {
-            "KeithMifsud\\Demo\\Application\\": "app/"
+            "KeithMifsud\\Demo\\Application\\": "app/",
+            "KeithMifsud\\Demo\\Domain\\": "src/Domain",
+            "KeithMifsud\\Demo\\Infrastructure\\": "src/Infrastructure"
         }
     },
     "autoload-dev": {
