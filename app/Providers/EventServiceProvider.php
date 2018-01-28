@@ -1,6 +1,6 @@
 <?php
 
-namespace KeithMifsud\Demo\Providers;
+namespace KeithMifsud\Demo\Application\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'KeithMifsud\Demo\Events\Event' => [
-            'KeithMifsud\Demo\Listeners\EventListener',
+        'KeithMifsud\Demo\Application\Events\Event' => [
+            'KeithMifsud\Demo\Application\Listeners\EventListener',
         ],
     ];
 

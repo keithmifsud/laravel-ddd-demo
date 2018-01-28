@@ -1,6 +1,6 @@
 <?php
 
-namespace KeithMifsud\Demo\Http\Middleware;
+namespace KeithMifsud\Demo\Application\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

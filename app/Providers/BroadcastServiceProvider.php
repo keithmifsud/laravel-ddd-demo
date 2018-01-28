@@ -1,6 +1,6 @@
 <?php
 
-namespace KeithMifsud\Demo\Providers;
+namespace KeithMifsud\Demo\Application\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

@@ -1,6 +1,6 @@
 <?php
 
-namespace KeithMifsud\Demo\Exceptions;
+namespace KeithMifsud\Demo\Application\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

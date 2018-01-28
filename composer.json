@@ -23,12 +23,12 @@
             "database/factories"
         ],
         "psr-4": {
-            "KeithMifsud\\Demo\\": "app/"
+            "KeithMifsud\\Demo\\Application\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "KeithMifsud\\Demo\\Tests\\": "tests/"
+            "KeithMifsud\\Demo\\Application\\Tests\\": "tests/"
         }
     },
     "extra": {

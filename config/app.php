@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        KeithMifsud\Demo\Providers\AppServiceProvider::class,
-        KeithMifsud\Demo\Providers\AuthServiceProvider::class,
-        // KeithMifsud\Demo\Providers\BroadcastServiceProvider::class,
-        KeithMifsud\Demo\Providers\EventServiceProvider::class,
-        KeithMifsud\Demo\Providers\RouteServiceProvider::class,
+        KeithMifsud\Demo\Application\Providers\AppServiceProvider::class,
+        KeithMifsud\Demo\Application\Providers\AuthServiceProvider::class,
+        // KeithMifsud\Demo\Application\Providers\BroadcastServiceProvider::class,
+        KeithMifsud\Demo\Application\Providers\EventServiceProvider::class,
+        KeithMifsud\Demo\Application\Providers\RouteServiceProvider::class,
 
     ],
 
