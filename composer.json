@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "KeithMifsud\\Demo\\Application\\Tests\\": "tests/"
+            "KeithMifsud\\Demo\\Tests\\": "tests/"
         }
     },
     "extra": {
