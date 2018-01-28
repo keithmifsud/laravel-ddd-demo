@@ -17,6 +17,11 @@ namespace KeithMifsud\Demo\Domain\Common\UniqueIdentifier;
 
 use Ramsey\Uuid\Uuid;
 
+/**
+ * An extensible unique identifier.
+ *
+ * Serves as an adaptor to the Uuid package.
+ */
 abstract class BaseUniqueIdentifier extends Uuid
 {
 
@@ -25,7 +30,7 @@ abstract class BaseUniqueIdentifier extends Uuid
      *
      * @return \Ramsey\Uuid\UuidInterface
      */
-    public function generate()
+    public static function generate()
     {
         return Uuid::uuid4();
     }

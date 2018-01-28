@@ -15,9 +15,8 @@
 
 namespace KeithMifsud\Demo\Domain\Member;
 
-use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
-
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 
 /**
  * A member's unique identifier.
@@ -27,4 +26,19 @@ final class MemberIdentifier extends BaseUniqueIdentifier implements
     UniqueIdentifier
 {
 
+    protected $value;
+
+
+    public static function generate()
+    {
+        return new self(
+            parent::generate()
+        );
+    }
+
+
+    public function __construct($identifier)
+    {
+        $this->value = $identifier;
+    }
 }

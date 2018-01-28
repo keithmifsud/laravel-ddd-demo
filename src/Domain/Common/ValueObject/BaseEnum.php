@@ -25,11 +25,6 @@ use MyCLabs\Enum\Enum;
 abstract class BaseEnum extends Enum
 {
 
-    /**
-     * @var mixed
-     */
-    protected $value;
-
 
     /**
      * Gets the value.

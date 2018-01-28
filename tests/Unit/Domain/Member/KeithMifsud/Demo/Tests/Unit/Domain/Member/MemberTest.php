@@ -16,8 +16,7 @@ namespace KeithMifsud\Demo\Tests\Unit\Domain\Member;
 
 use KeithMifsud\Demo\Tests\TestCase;
 use KeithMifsud\Demo\Domain\Member\Member;
-use Ramsey\Uuid\Uuid;
-
+use KeithMifsud\Demo\Domain\Member\MemberIdentifier;
 
 /**
  * Unit tests for the Member Aggregate.
@@ -34,11 +33,11 @@ class MemberTest extends TestCase
      */
     public function it_can_register_member_profile()
     {
-        $identifier = Uuid::uuid4();
+        $identifier = MemberIdentifier::generate();
         $streetAddress = '30, Fastolff House, Regent Street';
         $city = 'Norwich';
         $region = 'Norfolk';
-        $country = 'United Kingdom';
+        $country = 'GBR';
 
         $member = Member::register(
             $identifier,
@@ -70,7 +69,7 @@ class MemberTest extends TestCase
             $member->getAddress()->getRegion()->toString()
         );
         $this->assertEquals(
-            $country,
+            'United Kingdom',
             $member->getAddress()->getCountry()->toString()
         );
     }

@@ -27,7 +27,7 @@ interface UniqueIdentifier
      *
      * @return mixed
      */
-    public function generate();
+    public static function generate();
 
 
     /**

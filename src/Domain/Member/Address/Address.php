@@ -45,4 +45,70 @@ final class Address
      * @var Country
      */
     protected $country;
+
+
+    /**
+     * Address constructor.
+     *
+     * @param string $streetAddress
+     * @param string $city
+     * @param string $region
+     * @param string $country
+     */
+    public function __construct(
+        string $streetAddress,
+        string $city,
+        string $region,
+        string $country
+    ) {
+        $this->streetAddress = new Street($streetAddress);
+        $this->city = new City($city);
+        $this->region = new Region($region);
+        $this->country = new Country($country);
+    }
+
+
+    /**
+     * Gets the StreetAddress.
+     *
+     * @return Street
+     */
+    public function getStreetAddress(): Street
+    {
+        return $this->streetAddress;
+    }
+
+
+    /**
+     * Gets the City.
+     *
+     * @return City
+     */
+    public function getCity(): City
+    {
+        return $this->city;
+    }
+
+
+    /**
+     * Gets the Region.
+     *
+     * @return Region
+     */
+    public function getRegion(): Region
+    {
+        return $this->region;
+    }
+
+
+    /**
+     * Gets the Country.
+     *
+     * @return Country
+     */
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
+
 }
