@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * This file is part of Laravel DDD Demo
  *
@@ -13,27 +12,28 @@
  * @version   1.0 Initial Release
  */
 
-namespace KeithMifsud\Demo\Domain\Member;
 
-use KeithMifsud\Demo\Domain\Member\Address\Address;
+namespace KeithMifsud\Demo\Domain\Common\ValueObject;
 
 /**
- * A registered member.
+ * A contract for value objects.
  *
  */
-final class Member
+interface ValueObject
 {
 
     /**
-     * @var MemberIdentifier
+     * Gets the value.
+     *
+     * @return mixed
      */
-    protected $identifier;
+    public function getValue();
 
 
     /**
-     * @var Address
+     * Gets the value as a string representation.
+     *
+     * @return string
      */
-    protected $address;
-
-
+    public function toString() : string ;
 }

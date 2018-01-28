@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * This file is part of Laravel DDD Demo
  *
@@ -13,27 +12,28 @@
  * @version   1.0 Initial Release
  */
 
-namespace KeithMifsud\Demo\Domain\Member;
 
-use KeithMifsud\Demo\Domain\Member\Address\Address;
+namespace KeithMifsud\Demo\Domain\Common\UniqueIdentifier;
 
 /**
- * A registered member.
+ * Unique identifier contract.
  *
  */
-final class Member
+interface UniqueIdentifier
 {
 
     /**
-     * @var MemberIdentifier
+     * Generates a unique identifier.
+     *
+     * @return mixed
      */
-    protected $identifier;
+    public function generate();
 
 
     /**
-     * @var Address
+     * Gets the identifier as a string.
+     *
+     * @return string
      */
-    protected $address;
-
-
+    public function toString();
 }

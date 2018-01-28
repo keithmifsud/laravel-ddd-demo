@@ -13,27 +13,36 @@
  * @version   1.0 Initial Release
  */
 
-namespace KeithMifsud\Demo\Domain\Member;
-
-use KeithMifsud\Demo\Domain\Member\Address\Address;
+namespace KeithMifsud\Demo\Domain\Member\Address;
 
 /**
- * A registered member.
+ * The member's address.
  *
  */
-final class Member
+final class Address
 {
 
-    /**
-     * @var MemberIdentifier
-     */
-    protected $identifier;
-
 
     /**
-     * @var Address
+     * @var Street
      */
-    protected $address;
+    protected $streetAddress;
 
 
+    /**
+     * @var City
+     */
+    protected $city;
+
+
+    /**
+     * @var Region
+     */
+    protected $region;
+
+
+    /**
+     * @var Country
+     */
+    protected $country;
 }

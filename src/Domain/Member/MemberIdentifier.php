@@ -15,25 +15,16 @@
 
 namespace KeithMifsud\Demo\Domain\Member;
 
-use KeithMifsud\Demo\Domain\Member\Address\Address;
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
+
 
 /**
- * A registered member.
+ * A member's unique identifier.
  *
  */
-final class Member
+final class MemberIdentifier extends BaseUniqueIdentifier implements
+    UniqueIdentifier
 {
-
-    /**
-     * @var MemberIdentifier
-     */
-    protected $identifier;
-
-
-    /**
-     * @var Address
-     */
-    protected $address;
-
 
 }
