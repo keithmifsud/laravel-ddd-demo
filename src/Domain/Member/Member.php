@@ -15,6 +15,7 @@
 
 namespace KeithMifsud\Demo\Domain\Member;
 
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 use KeithMifsud\Demo\Domain\Member\Address\Address;
 
 
@@ -26,7 +27,7 @@ final class Member
 {
 
     /**
-     * @var MemberIdentifier
+     * @var UniqueIdentifier
      */
     protected $identifier;
 
@@ -40,7 +41,7 @@ final class Member
     /**
      * Registers a new member.
      *
-     * @param MemberIdentifier $memberIdentifier
+     * @param UniqueIdentifier $memberIdentifier
      * @param string           $streetAddress
      * @param string           $city
      * @param string           $region
@@ -48,7 +49,7 @@ final class Member
      * @return Member
      */
     public static function register(
-        MemberIdentifier $memberIdentifier,
+        UniqueIdentifier $memberIdentifier,
         string $streetAddress,
         string $city,
         string $region,
@@ -68,7 +69,7 @@ final class Member
 
 
     protected function __construct(
-        MemberIdentifier $identifier,
+        UniqueIdentifier $identifier,
         Address $address
     ) {
         $this->setIdentifier($identifier);
@@ -79,9 +80,9 @@ final class Member
     /**
      * Gets the Identifier.
      *
-     * @return MemberIdentifier
+     * @return UniqueIdentifier
      */
-    public function getIdentifier(): MemberIdentifier
+    public function getIdentifier(): UniqueIdentifier
     {
         return $this->identifier;
     }
@@ -101,9 +102,9 @@ final class Member
     /**
      * Sets the Identifier.
      *
-     * @param MemberIdentifier $identifier
+     * @param UniqueIdentifier $identifier
      */
-    protected function setIdentifier(MemberIdentifier $identifier)
+    protected function setIdentifier(UniqueIdentifier $identifier)
     {
         $this->identifier = $identifier;
     }

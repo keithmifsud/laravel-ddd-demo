@@ -36,4 +36,13 @@ interface ValueObject
      * @return string
      */
     public function toString() : string ;
+
+    /**
+     * Determines whether this and the other value objects
+     * have the same value.
+     *
+     * @param ValueObject $other
+     * @return bool
+     */
+    public function sameValueAs(ValueObject $other) : bool ;
 }

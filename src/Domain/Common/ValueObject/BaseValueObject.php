@@ -48,4 +48,17 @@ abstract class BaseValueObject
     {
         return (string)$this->getValue();
     }
+
+
+    /**
+     * Determines whether this and the other value objects
+     * have the same value.
+     *
+     * @param ValueObject $other
+     * @return bool
+     */
+    public function sameValueAs(ValueObject $other) : bool
+    {
+        return $this->getValue() == $other->getValue();
+    }
 }

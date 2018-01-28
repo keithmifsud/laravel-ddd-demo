@@ -14,6 +14,8 @@
 
 namespace KeithMifsud\Demo\Tests\Unit\Domain\Member;
 
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
+use KeithMifsud\Demo\Domain\Common\ValueObject\BaseValueObject;
 use KeithMifsud\Demo\Tests\TestCase;
 use KeithMifsud\Demo\Domain\Member\Member;
 use KeithMifsud\Demo\Domain\Member\MemberIdentifier;
@@ -25,15 +27,19 @@ use KeithMifsud\Demo\Domain\Member\MemberIdentifier;
 class MemberTest extends TestCase
 {
 
+    /**
+     * @var Member
+     */
+    protected $member;
+
 
     /**
-     * Tests that a member profile can be registered.
+     * Sets up the tests.
      *
-     * @test
      */
-    public function it_can_register_member_profile()
+    public function setUp()
     {
-        $identifier = MemberIdentifier::generate();
+        $identifier = BaseUniqueIdentifier::generate();
         $streetAddress = '30, Fastolff House, Regent Street';
         $city = 'Norwich';
         $region = 'Norfolk';
@@ -47,33 +53,59 @@ class MemberTest extends TestCase
             $country
         );
 
+        $this->member = $member;
+    }
+
+    /**
+     * Tests that a member profile can be registered.
+     *
+     * @test
+     */
+    public function it_can_register_member_profile()
+    {
+        $member = $this->member;
+
         $this->assertInstanceOf(
             Member::class,
             $member
         );
 
-        $this->assertEquals(
-            $identifier,
-            $member->getIdentifier()
+        $this->assertTrue(
+            $this->member->getIdentifier()->sameValueAs(
+                $member->getIdentifier()
+            )
         );
-        $this->assertEquals(
-            $streetAddress,
-            $member->getAddress()->getStreetAddress()->toString()
+
+        $this->assertTrue(
+            $this->member->getAddress()->getStreetAddress()->sameValueAs(
+                $member->getAddress()->getStreetAddress()
+            )
         );
-        $this->assertEquals(
-            $city,
-            $member->getAddress()->getCity()->toString()
+
+        $this->assertTrue(
+            $this->member->getAddress()->getCity()->sameValueAs(
+                $member->getAddress()->getCity()
+            )
         );
-        $this->assertEquals(
-            $region,
-            $member->getAddress()->getRegion()->toString()
+
+        $this->assertTrue(
+            $this->member->getAddress()->getRegion()->sameValueAs(
+                $member->getAddress()->getRegion()
+            )
         );
-        $this->assertEquals(
-            'United Kingdom',
-            $member->getAddress()->getCountry()->toString()
+
+        $this->assertTrue(
+            $this->member->getAddress()->getCountry()->sameValueAs(
+                $member->getAddress()->getCountry()
+            )
         );
     }
 
+
+    public function it_can_add_phone_number_to_member()
+    {
+
+    }
 
     // phone
 

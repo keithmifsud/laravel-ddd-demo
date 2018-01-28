@@ -22,27 +22,55 @@ use Ramsey\Uuid\Uuid;
  *
  * Serves as an adaptor to the Uuid package.
  */
-abstract class BaseUniqueIdentifier extends Uuid
+class BaseUniqueIdentifier implements UniqueIdentifier
 {
+
+    /**
+     * @var mixed
+     */
+    protected $identifier;
 
     /**
      * Generates a unique identifier.
      *
-     * @return \Ramsey\Uuid\UuidInterface
+     * @return UniqueIdentifier
      */
     public static function generate()
     {
-        return Uuid::uuid4();
+        return new self(Uuid::uuid4());
     }
 
+
+    /**
+     * BaseUniqueIdentifier constructor.
+     *
+     * @param $identifier
+     */
+    protected function __construct($identifier)
+    {
+        $this->identifier = $identifier;
+    }
 
     /**
      * Gets the identifier as a string.
      *
      * @return string
      */
-    public function toString(): string
+    public function toString()
     {
-        return parent::toString();
+        return $this->identifier->toString();
+    }
+
+
+    /**
+     * Determines if both identifiers
+     * have the same value.
+     *
+     * @param UniqueIdentifier $otherIdentifier
+     * @return bool
+     */
+    public function sameValueAs(UniqueIdentifier $otherIdentifier) : bool
+    {
+        return $this->toString() == $otherIdentifier->toString();
     }
 }

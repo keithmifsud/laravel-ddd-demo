@@ -36,4 +36,13 @@ interface UniqueIdentifier
      * @return string
      */
     public function toString();
+
+    /**
+     * Determines if both identifier have the
+     * same value.
+     *
+     * @param UniqueIdentifier $otherIdentifier
+     * @return bool
+     */
+    public function sameValueAs(UniqueIdentifier $otherIdentifier) : bool ;
 }

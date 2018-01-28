@@ -17,27 +17,23 @@ namespace KeithMifsud\Demo\Domain\Member;
 
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
+use KeithMifsud\Demo\Domain\Common\ValueObject\BaseValueObject;
+use KeithMifsud\Demo\Domain\Common\ValueObject\ValueObject;
 
 /**
  * A member's unique identifier.
  *
  */
-final class MemberIdentifier extends BaseUniqueIdentifier implements
-    UniqueIdentifier
+final class MemberIdentifier extends BaseValueObject implements
+    ValueObject
 {
 
-    protected $value;
-
-
-    public static function generate()
-    {
-        return new self(
-            parent::generate()
-        );
-    }
-
-
-    public function __construct($identifier)
+    /**
+     * MemberIdentifier constructor.
+     *
+     * @param UniqueIdentifier $identifier
+     */
+    public function __construct(UniqueIdentifier $identifier)
     {
         $this->value = $identifier;
     }
