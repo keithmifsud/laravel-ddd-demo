@@ -14,12 +14,13 @@
 
 namespace KeithMifsud\Demo\Tests\Unit\Domain\Member;
 
-use KeithMifsud\Demo\Domain\Member\Address\Address;
-use KeithMifsud\Demo\Domain\Member\MemberIdentifier;
-use stdClass;
 use KeithMifsud\Demo\Tests\TestCase;
 use KeithMifsud\Demo\Domain\Member\Member;
+use KeithMifsud\Demo\Domain\Member\LastName;
+use KeithMifsud\Demo\Domain\Member\FirstName;
+use KeithMifsud\Demo\Domain\Member\Address\Address;
 use KeithMifsud\Demo\Domain\Member\MemberRepository;
+use KeithMifsud\Demo\Domain\Member\PhoneNumber\PhoneNumber;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 
 /**
@@ -138,21 +139,11 @@ class MemberTest extends TestCase
     }
 
 
-
-
-    // address
-
-    // phone
-
-
-    // update each property - not names
-
-
     /**
      * Test that it can be instantiated from
      * a stored profile.
      *
-     * @todo
+     * @test
      */
     public function it_can_setup_an_existing_member_profile()
     {
@@ -182,6 +173,27 @@ class MemberTest extends TestCase
         );
 
         $this->assertTrue(
+            $member->getFirstName()->sameValueAs(new FirstName(
+                $profileData->first_name
+            ))
+        );
+
+        $this->assertTrue(
+            $member->getLastName()->sameValueAs(
+                new LastName($profileData->last_name)
+            )
+        );
+
+        $this->assertTrue(
+            $member->getPhoneNumber()->sameValueAs(
+                new PhoneNumber(
+                    $profileData->international_dialling_code,
+                    $profileData->domestic_phone_number
+                )
+            )
+        );
+
+        $this->assertTrue(
             $member->getAddress()->sameValueAs(
                 new Address(
                     $profileData->street_address,
@@ -192,9 +204,126 @@ class MemberTest extends TestCase
             )
         );
 
-        // test for other new props
-        // @TODO
+
     }
+
+
+    /**
+     * Tests that it can properly set up an existing
+     * member with a missing address.
+     *
+     * @test
+     */
+    public function it_can_setup_an_existing_member_with_missing_address()
+    {
+
+        $repository = $this->getMemberRepositoryMock();
+        $profileData = (object)[
+            'user_identifier'             => $this->member->getIdentifier()->toString(),
+            'first_name'                  => $this->member->getFirstName()->toString(),
+            'last_name'                   => $this->member->getLastName()->toString(),
+            'international_dialling_code' => '44',
+            'domestic_phone_number'       => '1493334010',
+            'street_address'              => null,
+            'city'                        => null,
+            'region'                      => null,
+            'country'                     => null,
+            'country_code'                => null
+        ];
+
+        $repository->expects($this->once())
+            ->method('getExistingMemberProfile')
+            ->will($this->returnValue($profileData));
+
+        $member = Member::existingMember(
+            $repository,
+            $this->member->getIdentifier()
+        );
+
+        $this->assertInstanceOf(
+            Member::class,
+            $member
+        );
+
+        $this->assertEquals(
+            $profileData->first_name,
+            $member->getFirstName()->toString()
+        );
+        $this->assertEquals(
+            $profileData->last_name,
+            $member->getLastName()->toString()
+        );
+        $this->assertTrue(
+            $member->getPhoneNumber()->sameValueAs(
+                new PhoneNumber(
+                    $profileData->international_dialling_code,
+                    $profileData->domestic_phone_number
+                )
+            )
+        );
+
+        $this->assertNull($member->getAddress());
+    }
+
+
+    /**
+     * Tests that it can be set up without a phone number.
+     *
+     * @test
+     */
+    public function it_can_setup_an_existing_member_with_missing_phone_number()
+    {
+
+        $repository = $this->getMemberRepositoryMock();
+        $profileData = (object)[
+            'user_identifier'             => $this->member->getIdentifier()->toString(),
+            'first_name'                  => $this->member->getFirstName()->toString(),
+            'last_name'                   => $this->member->getLastName()->toString(),
+            'international_dialling_code' => null,
+            'domestic_phone_number'       => null,
+            'street_address'              => '30, Fastolff House, Regent Street',
+
+            'city'         => 'Norwich',
+            'region'       => 'Norfolk',
+            'country'      => 'United Kingdom',
+            'country_code' => 'GBR'
+        ];
+
+        $repository->expects($this->once())
+            ->method('getExistingMemberProfile')
+            ->will($this->returnValue($profileData));
+
+        $member = Member::existingMember(
+            $repository,
+            $this->member->getIdentifier()
+        );
+
+        $this->assertInstanceOf(Member::class, $member);
+        $this->assertEquals(
+            $profileData->first_name,
+            $member->getFirstName()->toString()
+        );
+        $this->assertEquals(
+            $profileData->last_name,
+            $member->getLastName()->toString()
+        );
+
+        $this->assertTrue(
+            $member->getAddress()->sameValueAs(
+                new Address(
+                    $profileData->street_address,
+                    $profileData->city,
+                    $profileData->region,
+                    $profileData->country_code
+                )
+            )
+        );
+
+        $this->assertNull($member->getPhoneNumber());
+    }
+
+
+    // update each property - not names
 
 
     /**
@@ -206,14 +335,17 @@ class MemberTest extends TestCase
     {
 
         $profileData = (object)[
-            'user_identifier' => $this->member->getIdentifier()->toString(),
-            'street_address'  => $this->member->getAddress()
-                ->getStreetAddress()->toString(),
+            'user_identifier'             => $this->member->getIdentifier()->toString(),
+            'first_name'                  => $this->member->getFirstName()->toString(),
+            'last_name'                   => $this->member->getLastName()->toString(),
+            'international_dialling_code' => '44',
+            'domestic_phone_number'       => '1493334010',
+            'street_address'              => '30, Fastolff House, Regent Street',
 
-            'city'         => $this->member->getAddress()->getCity()->toString(),
-            'region'       => $this->member->getAddress()->getRegion()->toString(),
-            'country'      => $this->member->getAddress()->getCountry()->toString(),
-            'country_code' => $this->member->getAddress()->getCountry()->getCode()
+            'city'         => 'Norwich',
+            'region'       => 'Norfolk',
+            'country'      => 'United Kingdom',
+            'country_code' => 'GBR'
         ];
 
         return $profileData;

@@ -105,4 +105,22 @@ final class PhoneNumber
             ' ' . $this->getDomesticNumber()->toString();
     }
 
+
+    /**
+     * Determines whether the numbers are equal or not.
+     *
+     * @param PhoneNumber $anotherPhoneNumber
+     * @return bool
+     */
+    public function sameValueAs(PhoneNumber $anotherPhoneNumber): bool
+    {
+        $sameInternationalDiallingCode = $this->internationalDialingCode
+            ->sameValueAs($anotherPhoneNumber->getInternationalDialingCode());
+
+        $sameDomesticNumber = $this->getDomesticNumber()->sameValueAs(
+            $anotherPhoneNumber->getDomesticNumber()
+        );
+
+        return $sameInternationalDiallingCode && $sameDomesticNumber;
+    }
 }

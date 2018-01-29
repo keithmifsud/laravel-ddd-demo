@@ -16,8 +16,8 @@
 namespace KeithMifsud\Demo\Domain\Member;
 
 use KeithMifsud\Demo\Domain\Member\Address\Address;
-use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 use KeithMifsud\Demo\Domain\Member\PhoneNumber\PhoneNumber;
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 
 /**
  * A registered member.
@@ -69,7 +69,7 @@ final class Member
         string $firstName,
         string $lastName
     ) {
-        $member = new static(
+        $member = new self(
             $memberIdentifier,
             new FirstName($firstName),
             new LastName($lastName)
@@ -86,27 +86,60 @@ final class Member
             $memberIdentifier
         );
 
-        $member = new static(
-            $memberIdentifier,
-            new Address(
+        $firstName = new FirstName($profile->first_name);
+        $lastName = new LastName($profile->last_name);
+        $phoneNumber = null;
+        $address = null;
+
+        if ((!is_null($profile->international_dialling_code)) &&
+            (!is_null($profile->domestic_phone_number))
+        ) {
+            $phoneNumber = new PhoneNumber(
+                $profile->international_dialling_code,
+                $profile->domestic_phone_number
+            );
+        }
+
+        if ((!is_null($profile->street_address)) &&
+            (!is_null($profile->city)) &&
+            (!is_null($profile->region)) &&
+            (!is_null($profile->country_code))
+        ) {
+            $address = new Address(
                 $profile->street_address,
                 $profile->city,
                 $profile->region,
                 $profile->country_code
-            )
+            );
+        }
+
+        return new self(
+            $memberIdentifier,
+            $firstName,
+            $lastName,
+            $phoneNumber,
+            $address
         );
-        return $member;
     }
 
 
     protected function __construct(
         UniqueIdentifier $identifier,
         FirstName $firstName,
-        LastName $lastName
+        LastName $lastName,
+        PhoneNumber $phoneNumber = null,
+        Address $address = null
     ) {
         $this->setIdentifier($identifier);
         $this->setFirstName($firstName);
         $this->setLastName($lastName);
+
+        if (!is_null($phoneNumber)) {
+            $this->setPhoneNumber($phoneNumber);
+        }
+        if (!is_null($address)) {
+            $this->setAddress($address);
+        }
     }
 
 
@@ -145,7 +178,7 @@ final class Member
         string $countryCode
     ) {
 
-        if (! isset($this->address)) {
+        if (!isset($this->address)) {
             $this->setAddress(new Address(
                 $streetAddress,
                 $city,
@@ -192,9 +225,9 @@ final class Member
     /**
      * Gets the PhoneNumber.
      *
-     * @return PhoneNumber
+     * @return PhoneNumber|null
      */
-    public function getPhoneNumber(): PhoneNumber
+    public function getPhoneNumber(): ?PhoneNumber
     {
         return $this->phoneNumber;
     }
@@ -203,9 +236,9 @@ final class Member
     /**
      * Gets the Address.
      *
-     * @return Address
+     * @return Address|null
      */
-    public function getAddress(): Address
+    public function getAddress(): ?Address
     {
         return $this->address;
     }
