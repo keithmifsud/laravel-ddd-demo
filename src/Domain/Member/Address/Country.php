@@ -48,4 +48,15 @@ final class Country extends BaseValueObject implements ValueObject
 
         $this->value = $enumeratedCountry;
     }
+
+
+    /**
+     * Gets the country's code in ISO Alpha 3 format.
+     *
+     * @return string
+     */
+    public function getCode(): string
+    {
+        return $this->getValue()->getKey();
+    }
 }

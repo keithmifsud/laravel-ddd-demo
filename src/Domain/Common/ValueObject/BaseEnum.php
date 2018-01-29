@@ -46,4 +46,12 @@ abstract class BaseEnum extends Enum
     {
         return (string)$this->getValue();
     }
+
+
+    public static function getEnumPairFromKey($key) : array
+    {
+        $kv = [];
+        $kv = [$key => self::$key];
+        return $kv;
+    }
 }

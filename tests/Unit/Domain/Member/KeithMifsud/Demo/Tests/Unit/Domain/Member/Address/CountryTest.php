@@ -53,6 +53,26 @@ class CountryTest extends TestCase
 
 
     /**
+     * Tests that it can get the country's code.
+     *
+     * @test
+     */
+    public function it_can_get_its_country_code()
+    {
+        $country = new Country('HKG');
+        $this->assertEquals(
+            'Hong Kong',
+            $country->getValue()
+        );
+
+        $this->assertEquals(
+            'HKG',
+            $country->getCode()
+        );
+    }
+
+
+    /**
      * Tests that an exception is thrown when
      * initiated with an invalid country code.
      *

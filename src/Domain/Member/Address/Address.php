@@ -111,4 +111,31 @@ final class Address
         return $this->country;
     }
 
+
+    /**
+     * Determines the equality of the addresses.
+     *
+     * @param Address $anotherAddress
+     * @return bool
+     */
+    public function sameValueAs(Address $anotherAddress): bool
+    {
+        $sameStreet = $this->getStreetAddress()->sameValueAs(
+            $anotherAddress->getStreetAddress()
+        );
+
+        $sameCity = $this->getCity()->sameValueAs(
+            $anotherAddress->getCity()
+        );
+
+        $sameRegion = $this->getRegion()->sameValueAs(
+            $anotherAddress->getRegion()
+        );
+
+        $sameCountry = $this->getCountry()->sameValueAs(
+            $anotherAddress->getCountry()
+        );
+
+        return ($sameStreet && $sameCity && $sameRegion && $sameCountry);
+    }
 }

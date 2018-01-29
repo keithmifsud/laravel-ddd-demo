@@ -27,7 +27,16 @@ interface UniqueIdentifier
      *
      * @return mixed
      */
-    public static function generate();
+    public static function generate(): UniqueIdentifier;
+
+
+    /**
+     * Gets an identifier from its string.
+     *
+     * @param string $identifier
+     * @return UniqueIdentifier
+     */
+    public static function fromString(string $identifier): UniqueIdentifier;
 
 
     /**
@@ -35,7 +44,8 @@ interface UniqueIdentifier
      *
      * @return string
      */
-    public function toString();
+    public function toString(): string;
+
 
     /**
      * Determines if both identifier have the
@@ -44,5 +54,5 @@ interface UniqueIdentifier
      * @param UniqueIdentifier $otherIdentifier
      * @return bool
      */
-    public function sameValueAs(UniqueIdentifier $otherIdentifier) : bool ;
+    public function sameValueAs(UniqueIdentifier $otherIdentifier): bool;
 }

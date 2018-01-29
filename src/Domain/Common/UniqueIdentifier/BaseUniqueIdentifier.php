@@ -30,14 +30,27 @@ class BaseUniqueIdentifier implements UniqueIdentifier
      */
     protected $identifier;
 
+
     /**
      * Generates a unique identifier.
      *
      * @return UniqueIdentifier
      */
-    public static function generate()
+    public static function generate(): UniqueIdentifier
     {
         return new self(Uuid::uuid4());
+    }
+
+
+    /**
+     * Gets the identifier from a string.
+     *
+     * @param string $identifier
+     * @return UniqueIdentifier
+     */
+    public static function fromString(string $identifier): UniqueIdentifier
+    {
+        return new self(Uuid::fromString($identifier));
     }
 
 
@@ -51,12 +64,13 @@ class BaseUniqueIdentifier implements UniqueIdentifier
         $this->identifier = $identifier;
     }
 
+
     /**
      * Gets the identifier as a string.
      *
      * @return string
      */
-    public function toString()
+    public function toString(): string
     {
         return $this->identifier->toString();
     }
@@ -69,7 +83,7 @@ class BaseUniqueIdentifier implements UniqueIdentifier
      * @param UniqueIdentifier $otherIdentifier
      * @return bool
      */
-    public function sameValueAs(UniqueIdentifier $otherIdentifier) : bool
+    public function sameValueAs(UniqueIdentifier $otherIdentifier): bool
     {
         return $this->toString() == $otherIdentifier->toString();
     }

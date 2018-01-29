@@ -15,9 +15,8 @@
 
 namespace KeithMifsud\Demo\Domain\Member;
 
-use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 use KeithMifsud\Demo\Domain\Member\Address\Address;
-
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 
 /**
  * A registered member.
@@ -55,13 +54,34 @@ final class Member
         string $region,
         string $countryIsoAlpha3Code
     ) {
-        $member = new self(
+        $member = new static(
             $memberIdentifier,
             new Address(
                 $streetAddress,
                 $city,
                 $region,
                 $countryIsoAlpha3Code
+            )
+        );
+        return $member;
+    }
+
+
+    public static function existingMember(
+        MemberRepository $memberRepository,
+        UniqueIdentifier $memberIdentifier
+    ) {
+        $profile = $memberRepository->getExistingMemberProfile(
+            $memberIdentifier
+        );
+
+        $member = new static(
+            $memberIdentifier,
+            new Address(
+                $profile->street_address,
+                $profile->city,
+                $profile->region,
+                $profile->country_code
             )
         );
         return $member;
