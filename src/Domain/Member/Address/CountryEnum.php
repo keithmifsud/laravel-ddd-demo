@@ -13,7 +13,10 @@
  * @version   1.0 Initial Release
  */
 
-namespace KeithMifsud\Demo\Domain\Common\ValueObject;
+namespace KeithMifsud\Demo\Domain\Member\Address;
+
+use KeithMifsud\Demo\Domain\Common\ValueObject\BaseEnum;
+use KeithMifsud\Demo\Domain\Common\ValueObject\Enum;
 
 /**
  * An extensible country enumerator.

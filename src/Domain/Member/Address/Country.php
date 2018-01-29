@@ -18,7 +18,7 @@ namespace KeithMifsud\Demo\Domain\Member\Address;
 
 use KeithMifsud\Demo\Domain\Common\ValueObject\BaseEnum;
 use KeithMifsud\Demo\Domain\Common\ValueObject\BaseValueObject;
-use KeithMifsud\Demo\Domain\Common\ValueObject\CountryEnum;
+use KeithMifsud\Demo\Domain\Member\Address\CountryEnum;
 use KeithMifsud\Demo\Domain\Common\ValueObject\Enum;
 use KeithMifsud\Demo\Domain\Common\ValueObject\ValueObject;
 use KeithMifsud\Demo\Domain\Member\Exception\InvalidCountry;

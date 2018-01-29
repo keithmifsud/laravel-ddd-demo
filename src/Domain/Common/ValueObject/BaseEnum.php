@@ -37,16 +37,4 @@ abstract class BaseEnum extends Enum
         return self::byValue($value);
     }
 
-
-    /**
-     * Gets the string representation of the Enum.
-     *
-     * @return string
-     */
-    public function toString(): string
-    {
-        return (string)$this->getValue();
-    }
-
-
 }

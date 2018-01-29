@@ -13,7 +13,10 @@
  * @version   1.0 Initial Release
  */
 
-namespace KeithMifsud\Demo\Domain\Common\ValueObject;
+namespace KeithMifsud\Demo\Domain\Member\PhoneNumber;
+
+use KeithMifsud\Demo\Domain\Common\ValueObject\Enum;
+use KeithMifsud\Demo\Domain\Common\ValueObject\BaseEnum;
 
 /**
  * An extensible country calling code enumerator.

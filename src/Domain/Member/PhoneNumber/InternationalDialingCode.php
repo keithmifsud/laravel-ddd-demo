@@ -15,7 +15,7 @@
 
 namespace KeithMifsud\Demo\Domain\Member\PhoneNumber;
 
-use KeithMifsud\Demo\Domain\Common\ValueObject\CountryCallingCode;
+use KeithMifsud\Demo\Domain\Member\PhoneNumber\CountryCallingCode;
 use KeithMifsud\Demo\Domain\Common\ValueObject\ValueObject;
 use KeithMifsud\Demo\Domain\Common\ValueObject\BaseValueObject;
 use KeithMifsud\Demo\Domain\Member\Exception\InvalidPhoneNumber;
