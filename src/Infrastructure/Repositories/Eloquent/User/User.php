@@ -4,7 +4,13 @@ namespace KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\Member;
 
+
+/**
+ * The User Eloquent data model.
+ *
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -15,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'user_identifier', 'email', 'password',
     ];
 
     /**
@@ -26,4 +32,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * User has one Member.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function member()
+    {
+        return $this->hasOne(Member::class, 'user_identifier');
+    }
 }
