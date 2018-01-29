@@ -17,6 +17,7 @@ namespace KeithMifsud\Demo\Domain\Member;
 
 use KeithMifsud\Demo\Domain\Member\Address\Address;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
+use KeithMifsud\Demo\Domain\Member\PhoneNumber\PhoneNumber;
 
 /**
  * A registered member.
@@ -41,6 +42,12 @@ final class Member
      * @var LastName
      */
     protected $lastName;
+
+
+    /**
+     * @var PhoneNumber
+     */
+    protected $phoneNumber;
 
 
     /**
@@ -104,6 +111,25 @@ final class Member
 
 
     /**
+     * Adds a phone number to the profile
+     * if there isn't one already attached.
+     *
+     * @param string $internationalDialingCode
+     * @param string $domesticNumber
+     */
+    public function addPhoneNumber(
+        string $internationalDialingCode,
+        string $domesticNumber
+    ) {
+        if (! isset($this->phoneNumber)) {
+            $this->setPhoneNumber(
+                new PhoneNumber($internationalDialingCode, $domesticNumber)
+            );
+        }
+    }
+
+
+    /**
      * Gets the Identifier.
      *
      * @return UniqueIdentifier
@@ -134,6 +160,18 @@ final class Member
     {
         return $this->lastName;
     }
+
+
+    /**
+     * Gets the PhoneNumber.
+     *
+     * @return PhoneNumber
+     */
+    public function getPhoneNumber() : PhoneNumber
+    {
+        return $this->phoneNumber;
+    }
+
 
 
     /**
@@ -177,6 +215,17 @@ final class Member
     protected function setLastName(LastName $lastName)
     {
         $this->lastName = $lastName;
+    }
+
+
+    /**
+     * Sets the PhoneNumber.
+     *
+     * @param PhoneNumber $phoneNumber
+     */
+    protected function setPhoneNumber(PhoneNumber $phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
     }
 
 

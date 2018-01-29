@@ -93,17 +93,18 @@ class MemberTest extends TestCase
      * Tests that a phone number can be added to the
      * profile.
      *
-     * @todo
+     * @test
      */
     public function it_can_add_phone_number()
     {
         $member = $this->member;
-        $phoneNumber = '1234567890';
+        $countryDiallingCode = '44';
+        $phoneNumber = '1493334010';
 
-        $member->addPhoneNumber($phoneNumber);
+        $member->addPhoneNumber($countryDiallingCode, $phoneNumber);
 
         $this->assertEquals(
-            $phoneNumber,
+            '+44 1493334010',
             $member->getPhoneNumber()->toString()
         );
     }
