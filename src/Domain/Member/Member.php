@@ -121,10 +121,37 @@ final class Member
         string $internationalDialingCode,
         string $domesticNumber
     ) {
-        if (! isset($this->phoneNumber)) {
+        if (!isset($this->phoneNumber)) {
             $this->setPhoneNumber(
                 new PhoneNumber($internationalDialingCode, $domesticNumber)
             );
+        }
+    }
+
+
+    /**
+     * Adds the address to the profile
+     * if one is not present.
+     *
+     * @param string $streetAddress
+     * @param string $city
+     * @param string $regionOrState
+     * @param string $countryCode
+     */
+    public function addAddress(
+        string $streetAddress,
+        string $city,
+        string $regionOrState,
+        string $countryCode
+    ) {
+
+        if (! isset($this->address)) {
+            $this->setAddress(new Address(
+                $streetAddress,
+                $city,
+                $regionOrState,
+                $countryCode
+            ));
         }
     }
 
@@ -145,7 +172,7 @@ final class Member
      *
      * @return FirstName
      */
-    public function getFirstName() : FirstName
+    public function getFirstName(): FirstName
     {
         return $this->firstName;
     }
@@ -156,7 +183,7 @@ final class Member
      *
      * @return LastName
      */
-    public function getLastName() : LastName
+    public function getLastName(): LastName
     {
         return $this->lastName;
     }
@@ -167,11 +194,10 @@ final class Member
      *
      * @return PhoneNumber
      */
-    public function getPhoneNumber() : PhoneNumber
+    public function getPhoneNumber(): PhoneNumber
     {
         return $this->phoneNumber;
     }
-
 
 
     /**

@@ -110,8 +110,35 @@ class MemberTest extends TestCase
     }
 
 
+    /**
+     * Tests that an address can be added to the profile.
+     *
+     * @test
+     */
+    public function it_can_add_new_address()
+    {
+        $streetAddress = '30, Fastolff House, Regent Street';
+        $city = 'Norwich';
+        $region = 'Norfolk';
+        $country = 'GBR';
 
-    // first name, last name - trafctor register.
+        $member = $this->member;
+        $member->addAddress(
+            $streetAddress,
+            $city,
+            $region,
+            $country
+        );
+
+        $this->assertTrue(
+            $member->getAddress()->sameValueAs(
+                $this->member->getAddress()
+            )
+        );
+    }
+
+
+
 
     // address
 
