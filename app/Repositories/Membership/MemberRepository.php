@@ -31,7 +31,7 @@ interface MemberRepository
      * @param Member $member
      * @return int|null
      */
-    public function storeNewMember(Member $member) : ?int ;
+    public function storeNewMember(Member $member);
 
 
     /**
@@ -49,7 +49,7 @@ interface MemberRepository
      * Gets the member from storage.
      *
      * @param UniqueIdentifier $memberIdentifier
-     * @return null|\stdClass
+     * @return mixed
      */
-    public function getMember(UniqueIdentifier $memberIdentifier) : ?\stdClass ;
+    public function getMember(UniqueIdentifier $memberIdentifier);
 }
