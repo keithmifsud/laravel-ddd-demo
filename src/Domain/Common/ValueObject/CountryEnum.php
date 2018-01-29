@@ -19,7 +19,7 @@ namespace KeithMifsud\Demo\Domain\Common\ValueObject;
  * An extensible country enumerator.
  *
  */
-class CountryEnum extends BaseEnum
+class CountryEnum extends BaseEnum implements Enum
 {
 
     const AFG = "Afghanistan";

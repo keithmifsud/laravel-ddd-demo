@@ -39,7 +39,7 @@ final class Country extends BaseValueObject implements ValueObject
     public function __construct(string $countryCode)
     {
         try {
-            $enumeratedCountry = CountryEnum::__callStatic($countryCode, []);
+            $enumeratedCountry = CountryEnum::$countryCode();
         } catch (\Exception $exception) {
             throw new InvalidCountry(
                 "Invalid country code supplied " . (string)$countryCode
@@ -51,12 +51,23 @@ final class Country extends BaseValueObject implements ValueObject
 
 
     /**
+     * Gets the country's value.
+     *
+     * @return bool|float|int|null|string
+     */
+    public function getValue()
+    {
+        return parent::getValue()->getValue();
+    }
+
+
+    /**
      * Gets the country's code in ISO Alpha 3 format.
      *
      * @return string
      */
     public function getCode(): string
     {
-        return $this->getValue()->getKey();
+        return $this->value->getName();
     }
 }

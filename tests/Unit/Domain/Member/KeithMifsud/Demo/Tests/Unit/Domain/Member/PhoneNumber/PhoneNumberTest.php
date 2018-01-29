@@ -33,7 +33,7 @@ class PhoneNumberTest extends TestCase
      */
     public function it_can_be_instantiated_from_number()
     {
-        $countryCode = 'GBR';
+        $countryCode = '44';
         $localNumber = '1493334010';
 
         $phoneNumber = new PhoneNumber($countryCode, $localNumber);
@@ -49,19 +49,10 @@ class PhoneNumberTest extends TestCase
         );
 
         $this->assertEquals(
-            'GBR',
-            $phoneNumber->getInternationalDialingCode()->getCountryCode()
-        );
-
-        $this->assertEquals(
             $localNumber,
             $phoneNumber->getDomesticNumber()->getValue()
         );
 
-        $this->assertEquals(
-            '+44 1493334010',
-            $phoneNumber->toString()
-        );
     }
 
 
@@ -69,7 +60,7 @@ class PhoneNumberTest extends TestCase
      * Tests that an exception is thrown when
      * given an invalid country code.
      *
-     * @todo
+     * @test
      * @expectedException \KeithMifsud\Demo\Domain\Member\Exception\InvalidPhoneNumber
      */
     public function it_throws_exception_with_invalid_country_code()
@@ -85,7 +76,7 @@ class PhoneNumberTest extends TestCase
      * Tests that an exception is thrown when domestic number
      * includes alphabetic characters.
      *
-     * @todo
+     * @test
      * @expectedException \KeithMifsud\Demo\Domain\Member\Exception\InvalidPhoneNumber
      */
     public function it_throws_exception_with_alpha_characters()
@@ -94,6 +85,26 @@ class PhoneNumberTest extends TestCase
         $localNumber = '14933b4010';
 
         $phoneNumber = new PhoneNumber($countryCode, $localNumber);
+    }
+
+
+    /**
+     * Tests that it can get a string representation
+     * of the phone number.
+     *
+     * @test
+     */
+    public function it_can_get_the_number_in_string_format()
+    {
+
+        $countryCode = '44';
+        $localNumber = '1493334010';
+        $phoneNumber = new PhoneNumber($countryCode, $localNumber);
+
+        $this->assertEquals(
+            '+44 1493334010',
+            $phoneNumber->toString()
+        );
     }
 }
 

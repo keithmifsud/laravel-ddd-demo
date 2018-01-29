@@ -19,7 +19,7 @@ namespace KeithMifsud\Demo\Domain\Common\ValueObject;
  * An extensible country calling code enumerator.
  *
  */
-class CountryCallingCode extends BaseEnum
+class CountryCallingCode extends BaseEnum implements Enum
 {
 
 

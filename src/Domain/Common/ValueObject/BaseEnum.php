@@ -15,7 +15,8 @@
 
 namespace KeithMifsud\Demo\Domain\Common\ValueObject;
 
-use MyCLabs\Enum\Enum;
+use MabeEnum\Enum;
+use KeithMifsud\Demo\Domain\Common\ValueObject\Enum as Enumerator;
 
 
 /**
@@ -25,15 +26,15 @@ use MyCLabs\Enum\Enum;
 abstract class BaseEnum extends Enum
 {
 
-
     /**
-     * Gets the value.
+     * Gets the enumerator by value.
      *
-     * @return mixed
+     * @param $value
+     * @return static
      */
-    public function getValue()
+    public static function getByValue($value)
     {
-        return parent::getValue();
+        return self::byValue($value);
     }
 
 
@@ -48,10 +49,4 @@ abstract class BaseEnum extends Enum
     }
 
 
-    public static function getEnumPairFromKey($key) : array
-    {
-        $kv = [];
-        $kv = [$key => self::$key];
-        return $kv;
-    }
 }

@@ -30,12 +30,6 @@ final class InternationalDialingCode extends BaseValueObject implements ValueObj
 {
 
     /**
-     * @var CountryCallingCode
-     */
-    protected $countryCode;
-
-
-    /**
      * InternationalDialingCode constructor.
      *
      * @param string $countryCode
@@ -43,38 +37,26 @@ final class InternationalDialingCode extends BaseValueObject implements ValueObj
      */
     public function __construct(string $countryCode)
     {
-
-        $testEnum = new CountryCallingCode(CountryCallingCode::GBR);
-        var_dump($testEnum->getKey());
-
         try {
-/*            $enumeratedCode = CountryCallingCode::__callStatic(
-                $countryCode,
-                []
-            );*/
+            $enumeratedCode = CountryCallingCode::getByValue($countryCode);
 
-            //$enumeratedCode = new CountryCallingCode($countryCode);
-            $enumeratedCode = CountryCallingCode::values();
-            var_dump($enumeratedCode->getKey());
         } catch (\Exception $exception) {
             throw new InvalidPhoneNumber(
                 "Invalid international dialing code: " . (string)$countryCode
             );
         }
-        $this->countryCode = $enumeratedCode->getKey();
-        //var_dump($this->countryCode);
-        $this->value = $enumeratedCode->getValue();
+        $this->value = $enumeratedCode;
     }
 
 
     /**
-     * Gets the country's code in ISO Alpha 3 format
-     * corresponding to the international dialing code.
+     * Gets the value.
      *
      * @return string
      */
-    public function getCountryCode(): string
+    public function getValue(): string
     {
-        return $this->getValue()->getKey();
+        return parent::getValue()->getValue();
     }
+
 }

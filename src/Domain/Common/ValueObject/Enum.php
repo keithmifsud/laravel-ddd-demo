@@ -22,4 +22,11 @@ namespace KeithMifsud\Demo\Domain\Common\ValueObject;
 interface Enum
 {
 
+    /**
+     * Gets the enumerator by value.
+     *
+     * @param $value
+     * @return mixed
+     */
+    public static function getByValue($value);
 }
