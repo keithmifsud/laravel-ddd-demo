@@ -204,8 +204,6 @@ class MemberTest extends TestCase
                 )
             )
         );
-
-
     }
 
 
@@ -220,9 +218,9 @@ class MemberTest extends TestCase
 
         $repository = $this->getMemberRepositoryMock();
         $profileData = (object)[
-            'user_identifier'             => $this->member->getIdentifier()->toString(),
-            'first_name'                  => $this->member->getFirstName()->toString(),
-            'last_name'                   => $this->member->getLastName()->toString(),
+            'user_identifier'   => $this->member->getIdentifier()->toString(),
+            'first_name'        => $this->member->getFirstName()->toString(),
+            'last_name'         => $this->member->getLastName()->toString(),
             'international_dialling_code' => '44',
             'domestic_phone_number'       => '1493334010',
             'street_address'              => null,
@@ -277,11 +275,12 @@ class MemberTest extends TestCase
 
         $repository = $this->getMemberRepositoryMock();
         $profileData = (object)[
-            'user_identifier'             => $this->member->getIdentifier()->toString(),
-            'first_name'                  => $this->member->getFirstName()->toString(),
-            'last_name'                   => $this->member->getLastName()->toString(),
-            'international_dialling_code' => null,
-            'domestic_phone_number'       => null,
+        'user_identifier'   => $this->member->getIdentifier()->toString(),
+        'first_name'        => $this->member->getFirstName()->toString(),
+        'last_name'         => $this->member->getLastName()->toString(),
+
+        'international_dialling_code' => null,
+        'domestic_phone_number'       => null,
             'street_address'              => '30, Fastolff House, Regent Street',
 
             'city'         => 'Norwich',
@@ -419,9 +418,10 @@ class MemberTest extends TestCase
     {
 
         $profileData = (object)[
-            'user_identifier'             => $this->member->getIdentifier()->toString(),
-            'first_name'                  => $this->member->getFirstName()->toString(),
-            'last_name'                   => $this->member->getLastName()->toString(),
+            'user_identifier'   => $this->member->getIdentifier()->toString(),
+            'first_name'        => $this->member->getFirstName()->toString(),
+            'last_name'         => $this->member->getLastName()->toString(),
+            
             'international_dialling_code' => '44',
             'domestic_phone_number'       => '1493334010',
             'street_address'              => '30, Fastolff House, Regent Street',
