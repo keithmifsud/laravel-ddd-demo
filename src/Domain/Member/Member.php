@@ -78,6 +78,13 @@ final class Member
     }
 
 
+    /**
+     * Existing member factory.
+     *
+     * @param MemberRepository $memberRepository
+     * @param UniqueIdentifier $memberIdentifier
+     * @return Member
+     */
     public static function existingMember(
         MemberRepository $memberRepository,
         UniqueIdentifier $memberIdentifier
@@ -123,6 +130,15 @@ final class Member
     }
 
 
+    /**
+     * Member constructor.
+     *
+     * @param UniqueIdentifier $identifier
+     * @param FirstName        $firstName
+     * @param LastName         $lastName
+     * @param PhoneNumber|null $phoneNumber
+     * @param Address|null     $address
+     */
     protected function __construct(
         UniqueIdentifier $identifier,
         FirstName $firstName,
@@ -185,6 +201,61 @@ final class Member
                 $regionOrState,
                 $countryCode
             ));
+        }
+    }
+
+
+    /**
+     * Changes the phone number if one exists already
+     * and if it different from the original number.
+     *
+     * @param string $newInternationalDiallingCode
+     * @param string $newDomesticPhoneNumber
+     */
+    public function changePhoneNumber(
+        string $newInternationalDiallingCode,
+        string $newDomesticPhoneNumber
+    ) {
+
+        if (isset($this->phoneNumber)) {
+            $newPhoneNumber = new PhoneNumber(
+                $newInternationalDiallingCode,
+                $newDomesticPhoneNumber
+            );
+
+            if (!$this->getPhoneNumber()->sameValueAs($newPhoneNumber)) {
+                $this->setPhoneNumber($newPhoneNumber);
+            }
+        }
+    }
+
+
+    /**
+     * Moves address.
+     *
+     * @param string $newStreetAddress
+     * @param string $newCity
+     * @param string $newRegionOrState
+     * @param string $newCountryCode
+     */
+    public function moveAddress(
+        string $newStreetAddress,
+        string $newCity,
+        string $newRegionOrState,
+        string $newCountryCode
+    ) {
+
+        if (isset($this->address)) {
+            $newAddress = new Address(
+                $newStreetAddress,
+                $newCity,
+                $newRegionOrState,
+                $newCountryCode
+            );
+
+            if (!$this->getAddress()->sameValueAs($newAddress)) {
+                $this->setAddress($newAddress);
+            }
         }
     }
 

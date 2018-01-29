@@ -323,7 +323,90 @@ class MemberTest extends TestCase
     }
 
 
-    // update each property - not names
+    /**
+     * Tests that the phone number can be changes.
+     *
+     * @test
+     */
+    public function it_can_change_phone_number()
+    {
+        $repository = $this->getMemberRepositoryMock();
+        $profileData = $this->getProfileData();
+
+        $repository->expects($this->once())
+            ->method('getExistingMemberProfile')
+            ->will($this->returnValue($profileData));
+
+        $member = Member::existingMember(
+            $repository,
+            $this->member->getIdentifier()
+        );
+
+        $newInternationalDiallingCode = '356';
+        $newDomesticPhoneNumber = '21580117';
+        $member->changePhoneNumber($newInternationalDiallingCode,
+            $newDomesticPhoneNumber
+        );
+
+        $this->assertEquals(
+            '+356 21580117',
+            $member->getPhoneNumber()->toString()
+        );
+    }
+
+
+    /**
+     * Test that member can move address.
+     *
+     * @test
+     */
+    public function it_can_move_address()
+    {
+        $repository = $this->getMemberRepositoryMock();
+        $profileData = $this->getProfileData();
+
+        $repository->expects($this->once())
+            ->method('getExistingMemberProfile')
+            ->will($this->returnValue($profileData));
+
+        $member = Member::existingMember(
+            $repository,
+            $this->member->getIdentifier()
+        );
+
+        $newStreetAddress = 'New Street';
+        $newCity = 'New City';
+        $newRegion = 'New Region';
+        $newCountry = 'USA';
+
+        $member->moveAddress(
+            $newStreetAddress,
+            $newCity,
+            $newRegion,
+            $newCountry
+        );
+
+        $this->assertEquals(
+            $newStreetAddress,
+            $member->getAddress()->getStreetAddress()->toString()
+        );
+        $this->assertEquals(
+            $newCity,
+            $member->getAddress()->getCity()->toString()
+        );
+        $this->assertEquals(
+            $newRegion,
+            $member->getAddress()->getRegion()->toString()
+        );
+        $this->assertEquals(
+            $newCountry,
+            $member->getAddress()->getCountry()->getCode()
+        );
+        $this->assertEquals(
+            'United States',
+            $member->getAddress()->getCountry()->toString()
+        );
+    }
 
 
     /**

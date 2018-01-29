@@ -15,9 +15,8 @@
 
 namespace KeithMifsud\Demo\Domain\Member;
 
-use KeithMifsud\Demo\Domain\Common\ValueObject\BaseValueObject;
 use KeithMifsud\Demo\Domain\Common\ValueObject\ValueObject;
-
+use KeithMifsud\Demo\Domain\Common\ValueObject\BaseValueObject;
 
 /**
  * The first name of a member.
