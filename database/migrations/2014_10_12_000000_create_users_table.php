@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Database migration for the users table.
+ */
 class CreateUsersTable extends Migration
 {
     /**
@@ -19,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
