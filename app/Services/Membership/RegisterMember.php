@@ -15,9 +15,10 @@
 
 namespace KeithMifsud\Demo\Application\Services\Membership;
 
-use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
+
 use KeithMifsud\Demo\Domain\Member\Member;
 use KeithMifsud\Demo\Domain\Member\MemberIdentifier;
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
 use KeithMifsud\Demo\Application\Repositories\Authentication\UserRepository;
 
@@ -79,6 +80,7 @@ final class RegisterMember
             $lastName
         );
 
+        //llogin the user
         $this->memberRepository->storeNewMember($member);
 
     }
