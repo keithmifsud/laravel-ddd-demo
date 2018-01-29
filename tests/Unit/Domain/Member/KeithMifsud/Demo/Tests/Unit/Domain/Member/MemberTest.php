@@ -42,17 +42,13 @@ class MemberTest extends TestCase
     public function setUp()
     {
         $identifier = BaseUniqueIdentifier::generate();
-        $streetAddress = '30, Fastolff House, Regent Street';
-        $city = 'Norwich';
-        $region = 'Norfolk';
-        $country = 'GBR';
+        $firstName = 'Keith';
+        $lastName = 'Mifsud';
 
         $member = Member::register(
             $identifier,
-            $streetAddress,
-            $city,
-            $region,
-            $country
+            $firstName,
+            $lastName
         );
 
         $this->member = $member;
@@ -80,26 +76,14 @@ class MemberTest extends TestCase
         );
 
         $this->assertTrue(
-            $this->member->getAddress()->getStreetAddress()->sameValueAs(
-                $member->getAddress()->getStreetAddress()
+            $this->member->getFirstName()->sameValueAs(
+                $member->getFirstName()
             )
         );
 
         $this->assertTrue(
-            $this->member->getAddress()->getCity()->sameValueAs(
-                $member->getAddress()->getCity()
-            )
-        );
-
-        $this->assertTrue(
-            $this->member->getAddress()->getRegion()->sameValueAs(
-                $member->getAddress()->getRegion()
-            )
-        );
-
-        $this->assertTrue(
-            $this->member->getAddress()->getCountry()->sameValueAs(
-                $member->getAddress()->getCountry()
+            $this->member->getLastName()->sameValueAs(
+                $member->getLastName()
             )
         );
     }
@@ -128,12 +112,12 @@ class MemberTest extends TestCase
 
     // first name, last name - trafctor register.
 
+    // address
+
     // phone
 
-    // avatar
 
-    // update each property
-
+    // update each property - not names
 
 
     /**
@@ -206,6 +190,7 @@ class MemberTest extends TestCase
 
         return $profileData;
     }
+
 
     /**
      * Gets a mock of the member repository.

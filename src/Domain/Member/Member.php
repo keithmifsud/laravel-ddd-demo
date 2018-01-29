@@ -32,6 +32,18 @@ final class Member
 
 
     /**
+     * @var FirstName
+     */
+    protected $firstName;
+
+
+    /**
+     * @var LastName
+     */
+    protected $lastName;
+
+
+    /**
      * @var Address
      */
     protected $address;
@@ -41,27 +53,19 @@ final class Member
      * Registers a new member.
      *
      * @param UniqueIdentifier $memberIdentifier
-     * @param string           $streetAddress
-     * @param string           $city
-     * @param string           $region
-     * @param string           $countryIsoAlpha3Code
-     * @return Member
+     * @param string           $firstName
+     * @param string           $lastName
+     * @return static
      */
     public static function register(
         UniqueIdentifier $memberIdentifier,
-        string $streetAddress,
-        string $city,
-        string $region,
-        string $countryIsoAlpha3Code
+        string $firstName,
+        string $lastName
     ) {
         $member = new static(
             $memberIdentifier,
-            new Address(
-                $streetAddress,
-                $city,
-                $region,
-                $countryIsoAlpha3Code
-            )
+            new FirstName($firstName),
+            new LastName($lastName)
         );
         return $member;
     }
@@ -90,10 +94,12 @@ final class Member
 
     protected function __construct(
         UniqueIdentifier $identifier,
-        Address $address
+        FirstName $firstName,
+        LastName $lastName
     ) {
         $this->setIdentifier($identifier);
-        $this->setAddress($address);
+        $this->setFirstName($firstName);
+        $this->setLastName($lastName);
     }
 
 
@@ -105,6 +111,28 @@ final class Member
     public function getIdentifier(): UniqueIdentifier
     {
         return $this->identifier;
+    }
+
+
+    /**
+     * Gets the FirstName.
+     *
+     * @return FirstName
+     */
+    public function getFirstName() : FirstName
+    {
+        return $this->firstName;
+    }
+
+
+    /**
+     * Gets the LastName.
+     *
+     * @return LastName
+     */
+    public function getLastName() : LastName
+    {
+        return $this->lastName;
     }
 
 
@@ -127,6 +155,28 @@ final class Member
     protected function setIdentifier(UniqueIdentifier $identifier)
     {
         $this->identifier = $identifier;
+    }
+
+
+    /**
+     * Sets the FirstName.
+     *
+     * @param FirstName $firstName
+     */
+    protected function setFirstName(FirstName $firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+
+    /**
+     * Sets the LastName.
+     *
+     * @param LastName $lastName
+     */
+    protected function setLastName(LastName $lastName)
+    {
+        $this->lastName = $lastName;
     }
 
 
