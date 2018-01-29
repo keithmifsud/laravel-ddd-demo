@@ -42,6 +42,7 @@ class MemberTest extends TestCase
      */
     public function setUp()
     {
+        parent::setUp();
         $identifier = BaseUniqueIdentifier::generate();
         $firstName = 'Keith';
         $lastName = 'Mifsud';
