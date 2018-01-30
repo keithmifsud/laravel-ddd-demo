@@ -31,18 +31,17 @@ class UpdateProfile extends FormRequest
      */
     public function rules()
     {
-        $rules = $this->rules;
+        $rules = [];
 
-        if (($this->request->has('international_dialling_code')) ||
-            ($this->request->has('domestic_phone_number'))
+        if ($this->filled('domestic_phone_number')
         ) {
             $rules['international_dialling_code'] = 'required|numeric';
+            $rules['domestic_phone_number'] = 'required|numeric';
         }
 
-        if (($this->request->has('street_address')) ||
-            ($this->request->has('city')) ||
-            ($this->request->has('region')) ||
-            ($this->request->has('country_code'))
+        if (($this->filled('street_address')) ||
+            ($this->filled('city')) ||
+            ($this->filled('region'))
         ) {
             $rules['street_address'] = 'required|min:8';
             $rules['city'] = 'required|min:4';

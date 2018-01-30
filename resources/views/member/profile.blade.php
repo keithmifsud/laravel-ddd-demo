@@ -17,8 +17,8 @@
                                    $member->user_identifier }}">
 
                             <div class="form-group {{ $errors->has
-                            ('international_dialling_code') ? 'has-error' : ''}}">
-                                <label for="international_dialling_code"
+                            ('domestic_phone_number') ? 'has-error' : ''}}">
+                                <label for="domestic_phone_number"
                                        class="col-md-4 control-label">
                                     Phone Number
                                 </label>
@@ -26,11 +26,16 @@
                                     <select name="international_dialling_code"
                                             id="international_dialling_code"
                                             class="form-control">
-                                        <option value="">Select...</option>
-                                        @foreach($internationalDiallingCodes as $code =>
-                                        $internationalDiallingCode)
+                                        <option>Select...</option>
+                                        @foreach($internationalDiallingCodes as $internationalDiallingCode)
                                             <option
-                                                    value="{{$code}}">+ {{$internationalDiallingCode}}</option>
+                                                    value="{{$internationalDiallingCode}}"
+                                                    @if((old
+                                                    ('international_dialling_code')
+                                                    == $internationalDiallingCode) ||
+                                                     $member->international_dialling_code == $internationalDiallingCode) selected
+                                                    @endif>+
+                                                {{$internationalDiallingCode}}</option>
                                         @endforeach
                                     </select>
                                     @if($errors->has
@@ -39,15 +44,25 @@
                                             <strong>{{$errors->first('international_dialling_code')
                                             }}</strong>
                                         </span>
+                                    @endif
+                                </div>
+
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control"
+                                           name="domestic_phone_number"
+                                           id="domestic_phone_number"
+                                           value="{{ old
+                                           ('domestic_phone_number', $member->domestic_phone_number)
+                                           }}" placeholder="Phone number">
+                                    @if($errors->has('domestic_phone_number'))
+                                        <span class="help-block">
+                                            <strong>{{$errors->first('domestic_phone_number')}}</strong>
+                                        </span>
                                         @endif
                                 </div>
 
 
                             </div>
-
-
-
-
                         </form>
                     </div>
                 </div>
