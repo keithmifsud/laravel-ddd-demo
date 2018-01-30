@@ -16,12 +16,11 @@
 namespace KeithMifsud\Demo\Application\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use KeithMifsud\Demo\Application\Repositories\Authentication\UserRepository;
 use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
-
-use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\ApplicationRepository as MemberApplicationRepository;
-use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\Member;
+use KeithMifsud\Demo\Application\Repositories\Authentication\UserRepository;
 use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User\ApplicationRepository;
+use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\ApplicationRepository as MemberApplicationRepository;
+
 
 /**
  * A service provider for the application repositories
@@ -31,7 +30,6 @@ use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User\ApplicationReposi
 class ApplicationRepositoryServiceProvider extends ServiceProvider
 {
 
-
     /**
      * Registers the bindings.
      *
@@ -40,7 +38,7 @@ class ApplicationRepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             UserRepository::class,
-                ApplicationRepository::class
+            ApplicationRepository::class
         );
 
         $this->app->bind(

@@ -31,7 +31,7 @@ interface UserRepository
      * @param UniqueIdentifier $userIdentifier
      * @param string           $emailAddress
      * @param string           $password
-     * @return int|null
+     * @return mixed
      */
     public function createNewUser(
         UniqueIdentifier $userIdentifier,
@@ -44,7 +44,7 @@ interface UserRepository
      * Gets a user by its identifier.
      *
      * @param UniqueIdentifier $identifier
-     * @return null|stdClass
+     * @return mixed
      */
     public function getUserByIdentifier(UniqueIdentifier $identifier);
 

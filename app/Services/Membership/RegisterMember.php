@@ -82,6 +82,8 @@ final class RegisterMember
 
        $this->memberRepository->storeNewMember($member);
 
+       return $user;
+
     }
 
 

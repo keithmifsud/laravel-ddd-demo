@@ -65,6 +65,7 @@ class RegisterController extends Controller
             $request->get('first_name'),
             $request->get('last_name')
         );
+        $this->guard()->login($authUser);
         return redirect($this->redirectPath());
     }
 
