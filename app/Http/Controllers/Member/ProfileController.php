@@ -16,13 +16,13 @@
 namespace KeithMifsud\Demo\Application\Http\Controllers\Member;
 
 use Illuminate\Support\Facades\Auth;
+use KeithMifsud\Demo\Domain\Member\Address\CountryEnum;
 use KeithMifsud\Demo\Application\Http\Controllers\Controller;
+use KeithMifsud\Demo\Domain\Member\PhoneNumber\CountryCallingCode;
 use KeithMifsud\Demo\Application\Http\Requests\Membership\UpdateProfile;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
 use KeithMifsud\Demo\Application\Services\Membership\UpdateProfile as UpdateProfileService;
-use KeithMifsud\Demo\Domain\Member\Address\CountryEnum;
-use KeithMifsud\Demo\Domain\Member\PhoneNumber\CountryCallingCode;
 
 /**
  * Http controller for Member's profile.
@@ -53,24 +53,10 @@ class ProfileController extends Controller
             BaseUniqueIdentifier::fromString(Auth::user()->user_identifier)
         );
 
-        // Gets the available countries.
-        $countries = [];
-        $isoCountryCodes = CountryEnum::getNames();
-        foreach ($isoCountryCodes as $isoCountryCode) {
-            $countries[$isoCountryCode] = CountryEnum
-                ::byName($isoCountryCode)->getValue();
-        }
-        asort($countries);
+        $internationalDiallingCodes = $this
+            ->getAvailableInternationalDiallingCodes();
 
-        // Gets the available international dialling codes.
-        $internationalDiallingCodes = [];
-        $isoCodes = CountryCallingCode::getNames();
-        foreach ($isoCodes as $isoCode) {
-            $internationalDiallingCodes[$isoCode] = CountryCallingCode
-                ::byName($isoCode)->getValue();
-        }
-        asort($internationalDiallingCodes);
-        $internationalDiallingCodes = array_unique($internationalDiallingCodes);
+        $countries = $this->getAvailableCountries();
 
         return view(
             'member.profile',
@@ -96,5 +82,44 @@ class ProfileController extends Controller
             $request->all()
         );
         return redirect('home');
+    }
+
+
+    /**
+     * Gets the available countries.
+     *
+     * @return array
+     */
+    protected function getAvailableCountries(): array
+    {
+        $countries = [];
+        $isoCountryCodes = CountryEnum::getNames();
+        foreach ($isoCountryCodes as $isoCountryCode) {
+            $countries[$isoCountryCode] = CountryEnum
+                ::byName($isoCountryCode)->getValue();
+        }
+        asort($countries);
+
+        return $countries;
+    }
+
+
+    /**
+     * Gets the available international dialling codes.
+     *
+     * @return array
+     */
+    protected function getAvailableInternationalDiallingCodes(): array
+    {
+        $internationalDiallingCodes = [];
+        $isoCodes = CountryCallingCode::getNames();
+        foreach ($isoCodes as $isoCode) {
+            $internationalDiallingCodes[$isoCode] = CountryCallingCode
+                ::byName($isoCode)->getValue();
+        }
+        asort($internationalDiallingCodes);
+        $internationalDiallingCodes = array_unique($internationalDiallingCodes);
+
+        return $internationalDiallingCodes;
     }
 }
