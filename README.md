@@ -55,21 +55,6 @@ __[Application Layer Layer](https://github.com/keithmifsud/laravel-ddd-demo/tree
 
 The Application Layer is provided by the Laravel Framework. However, the Repository Pattern is also applied here. This Layer is the glue in between the Domain and the Infrastructure layers.
 
-### Request Life-cycle
-
-In brief, a request comes from a browser and is handled by the web server which is routes the requested URI to registered routes in Laravel. As an example request, when updating a member profile, the life-cycle of the request is as follows:
-
--> route "/profile"
--> ProfileController
--> updateProfile method
--> Request parameters are validated through the UpdateProfile Http request object
-
--> Update Profile application service is executed which gets the existing details from the application repository, builds the domain model with these details, performs the changes in the domain model and then stores the changes in database via the repository.
-
-The controller then handles the response which in this case is a simple,
--> redirect.
-
-
 ## Support
 
 If you need any help or have any comments, please submit an issue on GitHub.
