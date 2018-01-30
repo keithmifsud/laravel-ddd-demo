@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 // Auth routes
 Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -24,4 +24,6 @@ Route::post('/register', 'Auth\RegisterController@registerMember')->name('regist
 Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
+
+// Dashboard
 Route::get('/home', 'HomeController@index')->name('home');
