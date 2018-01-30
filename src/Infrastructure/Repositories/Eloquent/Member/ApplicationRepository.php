@@ -33,12 +33,11 @@ final class ApplicationRepository extends Repository implements MemberRepository
      * @param UniqueIdentifier $memberIdentifier
      * @return mixed
      */
-    public function getMember(UniqueIdentifier $memberIdentifier): ?\stdClass
+    public function getMember(UniqueIdentifier $memberIdentifier)
     {
         return $this->model->where([
-            'user_identifier',
-            $memberIdentifier->toString()
-        ])->get();
+            'user_identifier' => $memberIdentifier->toString()
+        ])->first();
     }
 
 

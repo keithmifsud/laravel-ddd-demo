@@ -40,10 +40,12 @@ Route::get(
 )->name('password.reset');
 
 // Registration routes.
-Route::get('/register',
-    'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('/register',
-    'Auth\RegisterController@registerMember')->name('register');
+Route::get(
+    '/register',
+    'Auth\RegisterController@showRegistrationForm'
+)->name('register');
+
+Route::post('/register', 'Auth\RegisterController@registerMember');
 
 // Dashboard routes
 Route::get('/home', 'HomeController@index')->name('home');

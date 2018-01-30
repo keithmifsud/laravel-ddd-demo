@@ -21,6 +21,7 @@ use KeithMifsud\Demo\Application\Http\Requests\Membership\UpdateProfile;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
 use KeithMifsud\Demo\Application\Services\Membership\UpdateProfile as UpdateProfileService;
+use KeithMifsud\Demo\Domain\Member\PhoneNumber\CountryCallingCode;
 
 /**
  * Http controller for Member's profile.
@@ -51,7 +52,12 @@ class ProfileController extends Controller
             BaseUniqueIdentifier::fromString(Auth::user()->user_identifier)
         );
 
-        return view('member.profile', compact('member'));
+        $internationalDiallingCodes = CountryCallingCode::getNames();
+
+        return view(
+            'member.profile',
+            compact('member', 'internationalDiallingCodes')
+        );
     }
 
 
