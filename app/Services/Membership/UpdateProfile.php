@@ -67,7 +67,7 @@ final class UpdateProfile
     public function execute(
         string $memberIdentifier,
         array $profileData
-    ) : void {
+    ): void {
 
         $member = Member::existingMember(
             $this->memberDomainRepository,
