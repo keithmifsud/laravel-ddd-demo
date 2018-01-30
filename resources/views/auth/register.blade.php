@@ -43,7 +43,8 @@
                                 <div class="col-md-6">
                                     <input id="last_name" type="text"
                                            class="form-control" name="last_name"
-                                           value="{{ old('last_name') }}" required
+                                           value="{{ old('last_name') }}"
+                                           required
                                            autofocus>
 
                                     @if ($errors->has('last_name'))
