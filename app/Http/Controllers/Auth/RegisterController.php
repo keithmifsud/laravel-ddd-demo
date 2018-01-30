@@ -5,7 +5,7 @@ namespace KeithMifsud\Demo\Application\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use KeithMifsud\Demo\Application\Http\Controllers\Controller;
-use KeithMifsud\Demo\Application\Http\Requests\RegisterMember;
+use KeithMifsud\Demo\Application\Http\Requests\Membership\RegisterMember;
 use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User\User;
 use KeithMifsud\Demo\Application\Services\Membership\RegisterMember as RegisterMemberService;
 

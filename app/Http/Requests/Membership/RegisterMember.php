@@ -1,6 +1,6 @@
 <?php
 
-namespace KeithMifsud\Demo\Application\Http\Requests;
+namespace KeithMifsud\Demo\Application\Http\Requests\Membership;
 
 use Illuminate\Foundation\Http\FormRequest;
 
