@@ -15,9 +15,8 @@
 
 namespace KeithMifsud\Demo\Application\Services\Membership;
 
-
 use KeithMifsud\Demo\Domain\Member\Member;
-use KeithMifsud\Demo\Domain\Member\MemberIdentifier;
+use Illuminate\Contracts\Auth\Authenticatable;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
 use KeithMifsud\Demo\Application\Repositories\Authentication\UserRepository;
@@ -59,15 +58,26 @@ final class RegisterMember
     }
 
 
+    /**
+     * Executes the service.
+     *
+     * Creates an Authenticatable User and Member.
+     * Then stores them in repositories.
+     *
+     * @param string $emailAddress
+     * @param string $password
+     * @param string $firstName
+     * @param string $lastName
+     * @return Authenticatable
+     */
     public function execute(
         string $emailAddress,
         string $password,
         string $firstName,
         string $lastName
-    ) {
+    ): Authenticatable {
 
         $identifier = BaseUniqueIdentifier::generate();
-
         $user = $this->userRepository->createNewUser(
             $identifier,
             $emailAddress,
@@ -79,12 +89,8 @@ final class RegisterMember
             $firstName,
             $lastName
         );
+        $this->memberRepository->storeNewMember($member);
 
-       $this->memberRepository->storeNewMember($member);
-
-       return $user;
-
+        return $user;
     }
-
-
 }
