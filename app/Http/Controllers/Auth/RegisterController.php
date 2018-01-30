@@ -62,7 +62,12 @@ class RegisterController extends Controller
             $request->get('first_name'),
             $request->get('last_name')
         );
+
         $this->guard()->login($authUser);
+        $request->session()->flash(
+            'alert-success',
+            'You have successfully registered and logged in.'
+        );
         return redirect($this->redirectPath());
     }
 }

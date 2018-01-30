@@ -71,6 +71,25 @@
             </div>
         </nav>
 
+        <!-- notification -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="flash-message">
+                        @foreach(['danger', 'warning', 'success', 'info'] as $message)
+                            @if(Session::has('alert-' . $message))
+                                <div class="alert alert-{{$message}}">
+                                    {{Session::get('alert-' . $message)}}
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./ notification -->
+
         @yield('content')
     </div>
 

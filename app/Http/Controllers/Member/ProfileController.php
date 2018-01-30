@@ -81,6 +81,11 @@ class ProfileController extends Controller
             $request->get('user_identifier'),
             $request->all()
         );
+
+        $request->session()->flash(
+            'alert-success',
+            'Profile was successfully updated.'
+        );
         return redirect('home');
     }
 

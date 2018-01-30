@@ -67,19 +67,23 @@ final class ApplicationRepository extends Repository implements MemberRepository
     {
         $profile = $this->getMember($member->getIdentifier());
 
-        $profile->international_dialling_code = $member->getPhoneNumber()
-            ->getInternationalDialingCode()->toString();
+        if (!is_null($member->getPhoneNumber())) {
+            $profile->international_dialling_code = $member->getPhoneNumber()
+                ->getInternationalDialingCode()->toString();
 
-        $profile->domestic_phone_number = $member->getPhoneNumber()
-            ->getDomesticNumber()->toString();
+            $profile->domestic_phone_number = $member->getPhoneNumber()
+                ->getDomesticNumber()->toString();
+        }
 
-        $profile->street_address = $member->getAddress()->getStreetAddress()
-            ->toString();
+        if (! is_null($member->getAddress())) {
+            $profile->street_address = $member->getAddress()->getStreetAddress()
+                ->toString();
 
-        $profile->city = $member->getAddress()->getCity()->toString();
-        $profile->region = $member->getAddress()->getRegion()->toString();
-        $profile->country_code = $member->getAddress()->getCountry()->getCode();
-        $profile->country = $member->getAddress()->getCountry()->toString();
+            $profile->city = $member->getAddress()->getCity()->toString();
+            $profile->region = $member->getAddress()->getRegion()->toString();
+            $profile->country_code = $member->getAddress()->getCountry()->getCode();
+            $profile->country = $member->getAddress()->getCountry()->toString();
+        }
 
         return $profile->save();
     }
