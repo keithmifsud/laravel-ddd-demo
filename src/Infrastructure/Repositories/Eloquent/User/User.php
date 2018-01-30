@@ -4,6 +4,7 @@ namespace KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\Member;
 
 
@@ -33,6 +34,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    /**
+     * Hashes the password.
+     *
+     * @param $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
 
     /**
      * User has one Member.
