@@ -74,6 +74,6 @@ final class ApplicationRepository implements UserRepository
     {
         return $this->model->where([
             'user_identifier' => $identifier->toString()
-        ])->get();
+        ])->first();
     }
 }
