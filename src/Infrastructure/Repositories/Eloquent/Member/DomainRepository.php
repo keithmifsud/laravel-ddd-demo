@@ -35,8 +35,7 @@ final class DomainRepository extends Repository implements MemberRepository
     public function getExistingMemberProfile(UniqueIdentifier $identifier)
     {
         return $this->model->where([
-            'user_identifier',
-            $identifier->toString()
-        ])->get();
+            'user_identifier' =>  $identifier->toString()
+        ])->first();
     }
 }
