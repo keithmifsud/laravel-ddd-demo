@@ -4,7 +4,6 @@ namespace KeithMifsud\Demo\Application\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
 /**
  * An http request for registering a new member.
  *
