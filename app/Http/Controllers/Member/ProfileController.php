@@ -21,6 +21,7 @@ use KeithMifsud\Demo\Application\Http\Requests\Membership\UpdateProfile;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\BaseUniqueIdentifier;
 use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
 use KeithMifsud\Demo\Application\Services\Membership\UpdateProfile as UpdateProfileService;
+use KeithMifsud\Demo\Domain\Member\Address\CountryEnum;
 use KeithMifsud\Demo\Domain\Member\PhoneNumber\CountryCallingCode;
 
 /**
@@ -52,11 +53,27 @@ class ProfileController extends Controller
             BaseUniqueIdentifier::fromString(Auth::user()->user_identifier)
         );
 
-        $internationalDiallingCodes = CountryCallingCode::getNames();
+        // Gets the available countries.
+        $countries = [];
+        $isoCountryCodes = CountryEnum::getNames();
+        foreach ($isoCountryCodes as $isoCountryCode) {
+            $countries[$isoCountryCode] = CountryEnum
+                ::byName($isoCountryCode)->getValue();
+        }
+        asort($countries);
+
+        // Gets the available international dialling codes.
+        $internationalDiallingCodes = [];
+        $isoCodes = CountryCallingCode::getNames();
+        foreach ($isoCodes as $isoCode) {
+            $internationalDiallingCodes[$isoCode] = CountryCallingCode
+                ::byName($isoCode)->getValue();
+        }
+        asort($internationalDiallingCodes);
 
         return view(
             'member.profile',
-            compact('member', 'internationalDiallingCodes')
+            compact('member', 'internationalDiallingCodes', 'countries')
         );
     }
 

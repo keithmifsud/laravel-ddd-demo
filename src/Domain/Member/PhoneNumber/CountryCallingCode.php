@@ -709,6 +709,4 @@ class CountryCallingCode extends BaseEnum implements Enum
 
     const VGB = '1284';
 
-
-    const IOT = "British Indian Ocean Territory";
 }

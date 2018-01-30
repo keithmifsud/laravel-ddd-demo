@@ -26,6 +26,15 @@
 
                             </div>
 
+                            @foreach($internationalDiallingCodes as $code =>
+                            $internationalDiallingCode)
+    {{ $code }} - {{$internationalDiallingCode}} <br>
+                            @endforeach
+
+                            @foreach($countries as $code =>
+                            $country)
+    {{ $code }} - {{$country}} <br>
+                            @endforeach
                         </form>
                     </div>
                 </div>
