@@ -27,12 +27,11 @@ use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
 final class ApplicationRepository extends Repository implements MemberRepository
 {
 
-
     /**
      * Gets the member.
      *
      * @param UniqueIdentifier $memberIdentifier
-     * @return null|\stdClass
+     * @return mixed
      */
     public function getMember(UniqueIdentifier $memberIdentifier): ?\stdClass
     {
@@ -60,13 +59,29 @@ final class ApplicationRepository extends Repository implements MemberRepository
 
 
     /**
-     * Updates teh member's profile.
+     * Updates the member's profile in repository.
      *
      * @param Member $member
+     * @return mixed
      */
     public function updateProfile(Member $member)
     {
-        $member = $this->getMember($member->getIdentifier());
-        //@todo
+        $profile = $this->getMember($member->getIdentifier());
+
+        $profile->international_dialling_code = $member->getPhoneNumber()
+            ->getInternationalDialingCode()->toString();
+
+        $profile->domestic_phone_number = $member->getPhoneNumber()
+            ->getDomesticNumber()->toString();
+
+        $profile->street_address = $member->getAddress()->getStreetAddress()
+            ->toString();
+
+        $profile->city = $member->getAddress()->getCity()->toString();
+        $profile->region = $member->getAddress()->getRegion()->toString();
+        $profile->country_code = $member->getAddress()->getCountry()->getCode();
+        $profile->country = $member->getAddress()->getCountry()->toString();
+
+        return $profile->save();
     }
 }
