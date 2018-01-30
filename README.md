@@ -30,6 +30,9 @@ cp .env.example .env
 
 ## Then migrate the database tables
 php artisan migrate
+
+## Generate an application key if you haven't yet supplied one in .env
+php artisan key:generate
 ```
 
 
