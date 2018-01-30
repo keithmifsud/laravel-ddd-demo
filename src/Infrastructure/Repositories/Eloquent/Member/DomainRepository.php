@@ -26,7 +26,6 @@ use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 final class DomainRepository extends Repository implements MemberRepository
 {
 
-
     /**
      * Gets the member's profile.
      *

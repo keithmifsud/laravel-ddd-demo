@@ -19,7 +19,6 @@ use KeithMifsud\Demo\Domain\Member\Member;
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 use KeithMifsud\Demo\Application\Repositories\Membership\MemberRepository;
 
-
 /**
  * Eloquent implementation of the member's
  * application repository.
@@ -54,8 +53,8 @@ final class ApplicationRepository extends Repository implements MemberRepository
     {
         return $this->model->create([
             'user_identifier' => $member->getIdentifier()->toString(),
-            'first_name' => $member->getFirstName()->toString(),
-            'last_name' => $member->getLastName()->toString()
+            'first_name'      => $member->getFirstName()->toString(),
+            'last_name'       => $member->getLastName()->toString()
         ]);
     }
 

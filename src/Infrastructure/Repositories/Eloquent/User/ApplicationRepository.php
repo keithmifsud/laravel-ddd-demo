@@ -16,7 +16,6 @@
 namespace KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\User;
 
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
-use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\Repository;
 use KeithMifsud\Demo\Application\Repositories\Authentication\UserRepository;
 
 /**
@@ -43,6 +42,14 @@ final class ApplicationRepository implements UserRepository
     }
 
 
+    /**
+     * Creates a new user in repository.
+     *
+     * @param UniqueIdentifier $identifier
+     * @param string           $emailAddress
+     * @param string           $password
+     * @return mixed
+     */
     public function createNewUser(
         UniqueIdentifier $identifier,
         string $emailAddress,
@@ -57,6 +64,12 @@ final class ApplicationRepository implements UserRepository
     }
 
 
+    /**
+     * Gets a user by its unique identifier.
+     *
+     * @param UniqueIdentifier $identifier
+     * @return mixed
+     */
     public function getUserByIdentifier(UniqueIdentifier $identifier)
     {
         return $this->model->where([
