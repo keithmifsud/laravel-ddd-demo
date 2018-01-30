@@ -24,6 +24,7 @@ class UpdateProfile extends FormRequest
         );
     }
 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -33,19 +34,22 @@ class UpdateProfile extends FormRequest
     {
         $rules = [];
 
-        if ($this->filled('domestic_phone_number')
+
+        if (($this->filled('domestic_phone_number')) ||
+            ($this->filled('international_dialling_code'))
         ) {
             $rules['international_dialling_code'] = 'required|numeric';
-            $rules['domestic_phone_number'] = 'required|numeric';
+            $rules['domestic_phone_number'] = 'required|numeric|min:6';
         }
 
         if (($this->filled('street_address')) ||
             ($this->filled('city')) ||
-            ($this->filled('region'))
+            ($this->filled('region')) ||
+            ($this->filled('country_code'))
         ) {
             $rules['street_address'] = 'required|min:8';
             $rules['city'] = 'required|min:4';
-            $rules['region'] = 'required|mi:4';
+            $rules['region'] = 'required|min:4';
             $rules['country_code'] = 'required|min:3';
         }
 
