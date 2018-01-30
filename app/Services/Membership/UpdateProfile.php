@@ -78,10 +78,17 @@ final class UpdateProfile
         if (($this->notEmptyOrNull($profileData['international_dialling_code'])) &&
             ($this->notEmptyOrNull($profileData['domestic_phone_number']))
         ) {
-            $member->addPhoneNumber(
-                $profileData['international_dialling_code'],
-                $profileData['domestic_phone_number']
-            );
+            if (is_null($member->getPhoneNumber())) {
+                $member->addPhoneNumber(
+                    $profileData['international_dialling_code'],
+                    $profileData['domestic_phone_number']
+                );
+            } else {
+                $member->changePhoneNumber(
+                    $profileData['international_dialling_code'],
+                    $profileData['domestic_phone_number']
+                );
+            }
         }
 
         // Updates the member's address if supplied.
@@ -90,13 +97,23 @@ final class UpdateProfile
             ($this->notEmptyOrNull($profileData['region'])) &&
             ($this->notEmptyOrNull($profileData['country_code']))
         ) {
-            $member->addAddress(
-                $profileData['street_address'],
-                $profileData['city'],
-                $profileData['region'],
-                $profileData['country_code']
-            );
+            if (is_null($member->getAddress())) {
+                $member->addAddress(
+                    $profileData['street_address'],
+                    $profileData['city'],
+                    $profileData['region'],
+                    $profileData['country_code']
+                );
+            } else {
+                $member->moveAddress(
+                    $profileData['street_address'],
+                    $profileData['city'],
+                    $profileData['region'],
+                    $profileData['country_code']
+                );
+            }
         }
+
         $this->memberApplicationRepository->updateProfile($member);
     }
 

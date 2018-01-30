@@ -20,21 +20,34 @@
                             ('international_dialling_code') ? 'has-error' : ''}}">
                                 <label for="international_dialling_code"
                                        class="col-md-4 control-label">
-
+                                    Phone Number
                                 </label>
+                                <div class="col-md-2">
+                                    <select name="international_dialling_code"
+                                            id="international_dialling_code"
+                                            class="form-control">
+                                        <option value="">Select...</option>
+                                        @foreach($internationalDiallingCodes as $code =>
+                                        $internationalDiallingCode)
+                                            <option
+                                                    value="{{$code}}">+ {{$internationalDiallingCode}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if($errors->has
+                                    ('international_dialling_code'))
+                                        <span class="help-block">
+                                            <strong>{{$errors->first('international_dialling_code')
+                                            }}</strong>
+                                        </span>
+                                        @endif
+                                </div>
 
 
                             </div>
 
-                            @foreach($internationalDiallingCodes as $code =>
-                            $internationalDiallingCode)
-    {{ $code }} - {{$internationalDiallingCode}} <br>
-                            @endforeach
 
-                            @foreach($countries as $code =>
-                            $country)
-    {{ $code }} - {{$country}} <br>
-                            @endforeach
+
+
                         </form>
                     </div>
                 </div>

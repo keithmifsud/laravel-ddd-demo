@@ -70,6 +70,7 @@ class ProfileController extends Controller
                 ::byName($isoCode)->getValue();
         }
         asort($internationalDiallingCodes);
+        $internationalDiallingCodes = array_unique($internationalDiallingCodes);
 
         return view(
             'member.profile',
