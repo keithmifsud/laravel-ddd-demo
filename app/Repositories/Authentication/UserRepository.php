@@ -12,11 +12,9 @@
  * @version   1.0 Initial Release
  */
 
-
 namespace KeithMifsud\Demo\Application\Repositories\Authentication;
 
 use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
-use stdClass;
 
 /**
  * The application's user repository.

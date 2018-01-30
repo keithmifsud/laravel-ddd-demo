@@ -15,8 +15,8 @@
 
 namespace KeithMifsud\Demo\Application\Repositories\Membership;
 
-use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 use KeithMifsud\Demo\Domain\Member\Member;
+use KeithMifsud\Demo\Domain\Common\UniqueIdentifier\UniqueIdentifier;
 
 /**
  * The application's member repository.
