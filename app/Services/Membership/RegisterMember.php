@@ -73,6 +73,7 @@ final class RegisterMember
             $emailAddress,
             $password
         );
+        var_dump($user);
 
         $member = Member::register(
             $identifier,
@@ -80,8 +81,8 @@ final class RegisterMember
             $lastName
         );
 
-        //llogin the user
-        $this->memberRepository->storeNewMember($member);
+        //llogin the user from controller?
+       // $this->memberRepository->storeNewMember($member);
 
     }
 

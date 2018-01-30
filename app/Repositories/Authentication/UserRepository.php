@@ -29,15 +29,15 @@ interface UserRepository
      * Creates a new user.
      *
      * @param UniqueIdentifier $userIdentifier
-     * @param string $emailAddress
-     * @param string $password
+     * @param string           $emailAddress
+     * @param string           $password
      * @return int|null
      */
     public function createNewUser(
         UniqueIdentifier $userIdentifier,
         string $emailAddress,
         string $password
-    ): ?int;
+    );
 
 
     /**
@@ -46,7 +46,6 @@ interface UserRepository
      * @param UniqueIdentifier $identifier
      * @return null|stdClass
      */
-    public function getUserByIdentifier(UniqueIdentifier $identifier
-    ): ?stdClass;
+    public function getUserByIdentifier(UniqueIdentifier $identifier);
 
 }

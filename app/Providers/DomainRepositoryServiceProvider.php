@@ -17,8 +17,8 @@ namespace KeithMifsud\Demo\Application\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use KeithMifsud\Demo\Domain\Member\MemberRepository;
-use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\DomainRepository;
 use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\Member;
+use KeithMifsud\Demo\Infrastructure\Repositories\Eloquent\Member\DomainRepository;
 
 /**
  * Service provider for domain repositories.
@@ -36,7 +36,7 @@ class DomainRepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             MemberRepository::class,
-            new DomainRepository(new Member())
+            DomainRepository::class
         );
     }
 }

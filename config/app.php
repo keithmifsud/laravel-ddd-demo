@@ -173,11 +173,11 @@ return [
          */
         KeithMifsud\Demo\Application\Providers\AppServiceProvider::class,
         KeithMifsud\Demo\Application\Providers\AuthServiceProvider::class,
-        // KeithMifsud\Demo\Application\Providers\BroadcastServiceProvider::class,
+        // KeithMifsud\Demo\Application\Providers\BroxadcastServiceProvider::class,
         KeithMifsud\Demo\Application\Providers\EventServiceProvider::class,
         KeithMifsud\Demo\Application\Providers\RouteServiceProvider::class,
-        \KeithMifsud\Demo\Application\Providers\DomainRepositoryServiceProvider::class,
-        \KeithMifsud\Demo\Application\Providers\ApplicationRepositoryServiceProvider::class,
+        KeithMifsud\Demo\Application\Providers\DomainRepositoryServiceProvider::class,
+        KeithMifsud\Demo\Application\Providers\ApplicationRepositoryServiceProvider::class,
 
     ],
 
