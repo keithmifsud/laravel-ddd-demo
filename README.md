@@ -2,7 +2,7 @@
 
 A demo application with a DDD membership domain.
 
-A working version of this demo is can easily be run locally using either Docker or Vagrant.
+A working version of this demo be run locally using either Docker or Vagrant.
 
 ## Installation
 
