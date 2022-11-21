@@ -4,6 +4,8 @@ A demo application with a DDD membership domain.
 
 A working version of this demo be run locally using either Docker or Vagrant.
 
+[More details...](https://keith-mifsud.me/projects/domain-driven-design-with-laravel)
+
 ## Installation
 
 Simply clone the repository:
